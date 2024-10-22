@@ -1,1 +1,1 @@
-# tetris-jetpackcompose-game
+# Tetris Jetpackcompose Game
