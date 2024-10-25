@@ -94,3 +94,6 @@
 [Extra Articles](https://medium.com/@acceldia)
 
 <!-- [Tetris Jetpackcompose Game](https://medium.com/@acceldia) -->
+
+### Time
+[![wakatime](https://wakatime.com/badge/user/516374bf-c07b-49d5-9972-bc15f71c20a3/project/1ef1b07f-5a35-40ce-8aa3-37f3594a40df.svg)](https://wakatime.com/badge/user/516374bf-c07b-49d5-9972-bc15f71c20a3/project/1ef1b07f-5a35-40ce-8aa3-37f3594a40df)
