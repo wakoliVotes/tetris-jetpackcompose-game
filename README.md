@@ -89,3 +89,8 @@
 ### Key Considerations:
 - **Responsive UI:** Use flexible sizing with `Modifier.size()` to ensure the game looks good across different screen sizes.
 - **Animations:** Jetpack Compose's animation APIs can be used for smoother transitions (e.g., block movements).
+
+### Read More On Medium
+[Extra Articles](https://medium.com/@acceldia)
+
+<!-- [Tetris Jetpackcompose Game](https://medium.com/@acceldia) -->
