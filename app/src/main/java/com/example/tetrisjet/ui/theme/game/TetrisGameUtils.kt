@@ -1,5 +1,6 @@
 package com.example.tetrisjet.ui.theme.game
 
+import android.graphics.Path.Direction
 import androidx.compose.ui.graphics.Color
 import com.example.tetrisjet.ui.theme.presentation.Pair
 
@@ -71,4 +72,9 @@ fun TetrisBlock.isValid(blocks: Board): Boolean {
     }
 }
 
-
+fun Direction.toOffset() = when (this) {
+    Direction.LEFT -> -1 to 0
+    Direction.UP -> 0  to -1
+    Direction.RIGHT -> 1 to 0
+    Direction.DOWN -> 0 to 1
+}
