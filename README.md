@@ -1,4 +1,5 @@
 # Tetris Jetpackcompose Game
+<img src="images/tetris.png" >
 
 ### Tetris Game Documentation
 
