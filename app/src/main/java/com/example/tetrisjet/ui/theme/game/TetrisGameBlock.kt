@@ -32,7 +32,10 @@ data class TetrisGameBlock(
     }
 
     fun adjustOffset(size: Pair<Int, Int>): TetrisGameBlock {
-        val yOffset =
-            val xOffset =
+//        val yOffset =
+//            val xOffset =
+
+        return move(0 to 1)
     }
+
 }
