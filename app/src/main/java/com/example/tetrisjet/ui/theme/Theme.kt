@@ -12,9 +12,27 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
+    primary = Color(0xFF242A2F),
+    primaryVariant = Color(0xFF242A2F),
+    background = Color(0xFF242A2F),
+    onPrimary = Color.White,
+    onBackground = Color.White,
     secondary = PurpleGrey80,
     tertiary = Pink80
+)
+
+val shapes = Shapes(
+    small = RoundedCornerShape(4.dp),
+    medium = RoundedCornerShape(4.dp),
+    large = RoundedCornerShape(0.dp)
+)
+
+val typography = Typography(
+    body1 = TextStyle(
+        fontFamily = FontFamily.Default,
+        fontWeight = fontWeight.Normal,
+        fontSize = 16.sp
+        ),
 )
 
 private val LightColorScheme = lightColorScheme(
@@ -53,6 +71,8 @@ fun TetrisjetTheme(
     MaterialTheme(
         colorScheme = colorScheme,
         typography = Typography,
+        shapes = shapes,
         content = content
     )
 }
+//TODO - Fix color scheme
