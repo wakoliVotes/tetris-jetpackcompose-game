@@ -2,7 +2,6 @@ package com.example.tetrisjet.ui.theme.game
 
 import android.graphics.Path.Direction
 import androidx.compose.ui.graphics.Color
-import com.example.tetrisjet.ui.theme.presentation.Pair
 
 fun calculateScore(linesDestroyed: Int) = when (linesDestroyed) {
     1 -> 100
@@ -40,7 +39,7 @@ fun <T> MutableList<List<T>>.updates(i: Int, j: Int, item: T): MutableList<List<
 
 val <T> List<List<T>>.multiSize get() = (firstOrNull()?.size ?: 0) to size
 
-fun TetrisBlock.createProjection(blocks: Board): TetrisBlock {
+fun TetrisGameBlock.createProjection(blocks: Board): TetrisGameBlock {
     var projection = this
     while (projection.move(0 to 1).isValid(blocks)) {
         projection = projection.move(0 to 1)
@@ -49,11 +48,11 @@ fun TetrisBlock.createProjection(blocks: Board): TetrisBlock {
 }
 
 
-fun Board.modifyBlocks(block: TetrisBlock): Pair<Board, Int> {
+fun <Board> Board.modifyBlocks(block: TetrisGameBlock): Pair<Board, Int> {
     val size = multiSize
     var newBoard = this.toMutableList()
     var destroyedRows = 0
-    block.cordinates.forEach {
+    block.coordinates.forEach {
         newBoard = newBoard.update(it.first, it.second, block.color)
     }
     if (newBoard.removeAll { row -> row.all { it != Color.Unspecified}}) {
@@ -64,9 +63,9 @@ fun Board.modifyBlocks(block: TetrisBlock): Pair<Board, Int> {
 }
 
 
-fun TetrisBlock.isValid(blocks: Board): Boolean {
+fun TetrisGameBlock.isValid(blocks: Board): Boolean {
     val size = blocks.multiSize
-    return cordinates.none {
+    return coordinates.none {
         it.first <0 || it.first > size.first -1 || it.second > size.second -1 ||
                 blocks[it.second][it.first] != Color.Unspecified
     }
