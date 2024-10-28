@@ -13,6 +13,8 @@ import com.example.tetrisjet.ui.theme.game.GameViewModel
 // TODO - Add dependencies - 28/10/2024
 import androidx.compose.ui.gesture.TouchStop
 import androidx.compose.ui.gesture.MinFlingVelocity
+import androidx.compose.ui.tooling.preview.Preview
+import com.example.tetrisjet.ui.theme.TetrisjetTheme
 import kotlinx.coroutines.channels.ticker
 
 
@@ -46,11 +48,23 @@ fun TetrisGame(){
         lifecleOwner.lifecycle.removeObserver(observer)
     }
 }
-
+// TODO - Fix
 LaunchedTask {
     for (event in tickerChannel) {
         viewModel.consumer(Intent.GameTick)
     }
 }
 
-Box(M)
+// TODO - Add box, statistics, and gameover composable functions
+
+
+
+
+// Preview the game - Test and correct
+@Preview
+@Composable
+fun DefaultPreview(){
+    TetrisjetTheme {
+        TetrisGame()
+    }
+}

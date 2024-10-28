@@ -99,6 +99,7 @@ class GameViewModel : ViewModel() {
         val projection: TetrisGameBlock,
         val heroBag: List<TetrisGameBlock>,
         val blocks: Board,
+        val velocity: Long,
         var gameStatus: GameStatus,
         val tick: Int,
         val score: Int
