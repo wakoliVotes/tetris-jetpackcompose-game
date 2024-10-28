@@ -1,14 +1,15 @@
 package com.example.tetrisjet.ui.theme.presentation
 
-import androidx.compose.material.ripple.RippleAlpha
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.util.packInts
+import com.example.tetrisjet.ui.theme.game.Board
+import com.example.tetrisjet.ui.theme.game.BoardSize
 import com.example.tetrisjet.ui.theme.game.TetrisGameBlock
 
 fun DrawScope.drawHero(hero: TetrisGameBlock, blockSize: Float) {
@@ -19,7 +20,7 @@ fun DrawScope.drawHero(hero: TetrisGameBlock, blockSize: Float) {
 
 fun DrawScope.drawProjection(hero: TetrisGameBlock, blockSize: Float) {
     hero.coordinates.forEach {
-        drawPeace(it. blocksize, hero.color)
+        drawPeace(it, blockSize, hero.color)
     }
 }
 
@@ -30,7 +31,7 @@ fun DrawScope.drawBoard(board: Board, blockSize: Float) {
             if (color == Color.Unspecified) {
                 val actualCenter = Offset(
                     x * blockSize + blockSize / 2F,
-                    Y * blockSize + blockSize / 2F
+                    y * blockSize + blockSize / 2F
                 )
                 drawCircle(
                     color = Color(0xFF30353A),
@@ -65,7 +66,6 @@ fun DrawScope.drawPeace(
     )
     drawTriangle(
         Color.Black.copy(alpha),
-        actualLocation,
         actualLocation + Offset(blockSize, 0F),
         actualLocation + Offset(blockSize, blockSize),
         actualLocation + Offset(0F, blockSize)
