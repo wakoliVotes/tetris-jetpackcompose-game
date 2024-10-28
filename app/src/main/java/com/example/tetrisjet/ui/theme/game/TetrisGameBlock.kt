@@ -1,6 +1,7 @@
 package com.example.tetrisjet.ui.theme.game
 
 import androidx.compose.ui.graphics.Color
+import kotlin.math.absoluteValue
 import kotlin.random.Random
 
 data class TetrisGameBlock(
@@ -32,8 +33,8 @@ data class TetrisGameBlock(
     }
 
     fun adjustOffset(size: Pair<Int, Int>): TetrisGameBlock {
-            val yOffset =(coordinates.minByOrNull { it.second }?.secon?.takeIf { it < 0 }?.absoluteValue ?: 0 +
-            (coordinates.maxByOrNull { it.second }?.second?.takeIf { it > size.second -1 }?.let { size.second - it - 1 } ?:0)
+            val yOffset =(coordinates.minByOrNull { it.second }?.second?.takeIf { it < 0 }?.absoluteValue ?: 0 +
+            (coordinates.maxByOrNull { it.second }?.second?.takeIf { it > size.second -1 }?.let { size.second - it - 1 } ?:0))
 
             val xOffset = (coordinates.minByOrNull { it.first }?.first?.takeIf { it < 0 }?.absoluteValue ?: 0) +
                 (coordinates.maxByOrNull { it.first }?.first?.takeIf { it > size.first - 1 }?.let { size.first - it - 1 } ?: 0)
