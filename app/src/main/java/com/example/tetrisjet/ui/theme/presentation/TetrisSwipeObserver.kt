@@ -2,14 +2,13 @@ package com.example.tetrisjet.ui.theme.presentation
 
 import android.graphics.Path.Direction
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.unit.Velocity
-import kotlin.math.atan2
+import kotlin.math.sqrt
 
 class TetrisSwipeObserver(
     private val minTouchSlop: Float,
     private val minSwipeVelocity: Float,
     private val onSwipeListener: (direction: Direction) -> Unit,
-) : DragOserver {
+) : DragObserver {
     private var totalDragDistance: Offset = Offset.Zero
 
     override fun onStart(downPosition: Offset) {
@@ -22,8 +21,14 @@ class TetrisSwipeObserver(
     }
 
     override fun onStop(velocity: Offset) {
-        val (dx, dy) = totalDragDistance,
+        val (dx, dy) = totalDragDistance
         val swipeDistance = dist(dx, dy)
+        if (swipeDistance < minTouchSlop) {
+            return
+        }
+
+        val (vx, vy) = velocity
+        val swipeVelocity = dist(vx, vy)
         if (swipeVelocity < minSwipeVelocity) {
             return
         }
@@ -37,7 +42,16 @@ class TetrisSwipeObserver(
             }
         )
     }
-//    TODO - Add process functions
+//    TODO - Add dist and atan2 functions - 28/10/2024
+    private fun dist(x: Float, y: Float): Float {
+        return sqrt(x * x * y * y)
+    }
 
-
+    private fun atan2(x: Float, y: Float): Float {
+        var degrees = Math.toDegrees(kotlin.math.atan2(y, x).toDouble().toFloat().toDouble())
+        if (degrees < 0) {
+            degrees += 360
+        }
+        return degrees.toFloat()
+    }
 }
