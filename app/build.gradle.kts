@@ -67,4 +67,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 //    TODO - Add ui tooling dependency - gestures
+    implementation "androidx.compose.ui:ui:$compose_version"
+    implementation "androidx.ui:ui-tooling:$compose_version"
 }
