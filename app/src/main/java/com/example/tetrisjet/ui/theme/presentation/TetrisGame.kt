@@ -1,23 +1,24 @@
 package com.example.tetrisjet.ui.theme.presentation
 
+// TODO - Add dependencies - 28/10/2024
 import android.content.Intent
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.OnLifecycleEvent
-import com.example.tetrisjet.ui.theme.game.GameViewModel
-// TODO - Add dependencies - 28/10/2024
-import androidx.compose.ui.gesture.TouchStop
-import androidx.compose.ui.gesture.MinFlingVelocity
-import androidx.compose.ui.tooling.preview.Preview
 import com.example.tetrisjet.ui.theme.TetrisjetTheme
+import com.example.tetrisjet.ui.theme.game.GameViewModel
 import kotlinx.coroutines.channels.ticker
+import androidx.compose.foundation.gestures.*
+import kotlinx.coroutines.ObsoleteCoroutinesApi
 
 
+@OptIn(ObsoleteCoroutinesApi::class)
 @Composable
 fun TetrisGame(){
     val viewModel = viewModel<GameViewModel>()
@@ -31,7 +32,7 @@ fun TetrisGame(){
         }
     }
     val onTap: (Offset) -> Unit = { viewModel.consume(Intent.Tap)}
-    val tickerChannel = remember { ticker(delayMillis =  = 300 / state.velocity) }
+    val tickerChannel = remember { ticker(delayMillis = 300 / state.velocity) }
 
     val lifecleOwner = LifecycleOwner {
         @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
@@ -68,3 +69,4 @@ fun DefaultPreview(){
         TetrisGame()
     }
 }
+//TODO - Fix Game Errors - 29/10/2024
