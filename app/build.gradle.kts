@@ -71,5 +71,4 @@ dependencies {
     implementation("androidx.compose.ui:ui:1.5.1")
     implementation("androidx.compose.ui:ui-tooling:1.5.1")
 
-
 }
