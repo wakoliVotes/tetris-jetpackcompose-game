@@ -16,6 +16,8 @@ import com.example.tetrisjet.ui.theme.TetrisjetTheme
 import com.example.tetrisjet.ui.theme.game.GameViewModel
 import kotlinx.coroutines.channels.ticker
 import androidx.compose.foundation.gestures.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -28,9 +30,14 @@ import androidx.compose.ui.graphics.Canvas
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.ViewModel
+import com.example.tetrisjet.ui.theme.game.Board
+import com.example.tetrisjet.ui.theme.game.GameStatus
 import com.example.tetrisjet.ui.theme.game.TetrisGameBlock
 import kotlinx.coroutines.ObsoleteCoroutinesApi
 import kotlin.math.min
+import androidx.compose.foundation.Canvas
 
 
 @OptIn(ObsoleteCoroutinesApi::class)
@@ -38,8 +45,6 @@ import kotlin.math.min
 fun TetrisGame(){
     val viewModel = viewModel<GameViewModel>()
     val state by viewModel.state
-
-    val lifecyleOwner = LocalLifecycleOwner.current
 
     val dragObserver = with(LocalDensity.current) {
         TetrisSwipeObserver(TouchSlop.toPx(), MinFlingVelocity.toPx()) {
@@ -49,7 +54,9 @@ fun TetrisGame(){
     val onTap: (Offset) -> Unit = { viewModel.consume(Intent.Tap)}
     val tickerChannel = remember { ticker(delayMillis = 300 / state.velocity) }
 
-    val lifecleOwner = LifecycleOwner {
+    val lifecyleOwner = LocalLifecycleOwner.current
+    onCommit {
+        val observer = object : LifecycleObserver {
         @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
         fun onResume() {
             viewModel.consume(Intent.Resume)
@@ -64,12 +71,29 @@ fun TetrisGame(){
         lifecleOwner.lifecycle.removeObserver(observer)
     }
 }
+
 // TODO - Fix
 LaunchedTask {
     for (event in tickerChannel) {
         viewModel.consumer(Intent.GameTick)
     }
 }
+    Box(Modifier.fillMaxSize()) {
+        Column (
+            Modifier.fillMaxSize()
+                .tapGestureFilter(onTap)
+                .dragGestureFilter(dragObserver)
+        ) {
+            Statistic(state)
+            Board(state, Modifier.align(Alignment.CenterHorizontally))
+        }
+
+        if (state.gameStatus == GameStatus.GameOver) {
+            GameOver(Modifier.align(Alignment.Center))
+        }
+
+        }
+    }
 
 // TODO - Add box, statistics, and gameover composable functions
 
@@ -78,7 +102,7 @@ fun Statistic(state: GameViewModel.State, modifier: Modifier = Modifier) {
     Row (modifier.padding(all = 16.dp), verticalAlignment = Alignment.CenterVertically) {
         Text(text = "Score: ${state.score}")
         Text(text = "Next", modifier = Modifier.padding(start = 16.dp))
-        NextHero(block = state.heroBad.first().rotate(), modifier = Modifier.padding(start = 8.dp))
+        NextHero(block = state.heroBag.first().rotate(), modifier = Modifier.padding(start = 8.dp))
     }
 }
 

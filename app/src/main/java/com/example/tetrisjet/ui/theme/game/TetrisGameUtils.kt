@@ -1,6 +1,7 @@
 package com.example.tetrisjet.ui.theme.game
 
 import android.graphics.Path.Direction
+import android.view.MotionEvent
 import androidx.compose.ui.graphics.Color
 import androidx.compose.foundation.gestures.awaitEachGesture
 
@@ -11,6 +12,8 @@ fun calculateScore(linesDestroyed: Int) = when (linesDestroyed) {
     4 -> 1500
     else -> 0
 }
+
+// FIXME - Swipe direction, enum class - 30/10/2024 - NG
 
 val shapeVariants = listOf(
     listOf(Pair(0, -1), Pair(0, 0), Pair(-1, 0), Pair(-1, 1)) to Color(0xFF3D76B5),
@@ -73,8 +76,18 @@ fun TetrisGameBlock.isValid(blocks: Board): Boolean {
 }
 
 fun Direction.toOffset() = when (this) {
-    Direction.LEFT -> -1 to 0
-    Direction.UP -> 0  to -1
-    Direction.RIGHT -> 1 to 0
-    Direction.DOWN -> 0 to 1
+//    Direction.LEFT -> -1 to 0
+//    Direction.UP -> 0  to -1
+//    Direction.RIGHT -> 1 to 0
+//    Direction.DOWN -> 0 to 1
+}
+
+fun SwipeEvent(event: MotionEvent?) {
+    when (event?.action) {
+        MotionEvent.ACTION_UP -> {}
+        MotionEvent.ACTION_DOWN -> {}
+        MotionEvent.ACTION_MOVE -> {}
+        else -> return false
+    }
+    true
 }

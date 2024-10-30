@@ -74,5 +74,5 @@ dependencies {
     implementation(libs.androidx.foundation)
     implementation("androidx.lifecycle:lifecycle-viewmodel:2.8.6")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.6")
-
+    implementation("androidx.navigation:navigation-fragment-ktx:2.8.3")
 }
