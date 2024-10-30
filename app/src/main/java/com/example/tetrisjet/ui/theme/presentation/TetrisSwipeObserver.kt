@@ -3,13 +3,20 @@ package com.example.tetrisjet.ui.theme.presentation
 import android.graphics.Path.Direction
 import androidx.compose.ui.geometry.Offset
 import kotlin.math.sqrt
+import androidx.compose.foundation.gestures.DragScope
+import androidx.compose.foundation.gestures.awaitEachGesture
+import androidx.compose.foundation.gestures.awaitFirstDown
 
 class TetrisSwipeObserver(
     private val minTouchSlop: Float,
     private val minSwipeVelocity: Float,
     private val onSwipeListener: (direction: Direction) -> Unit,
-) : DragObserver {
+) : DragScope {
     private var totalDragDistance: Offset = Offset.Zero
+
+    override fun dragBy(pixels: Float) {
+        TODO("Not yet implemented")
+    }
 
     override fun onStart(downPosition: Offset) {
         totalDragDistance = Offset.Zero

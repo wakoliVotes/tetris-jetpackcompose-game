@@ -72,4 +72,7 @@ dependencies {
     implementation(libs.androidx.compose.ui.ui.tooling)
     implementation(libs.ui)
     implementation(libs.androidx.foundation)
+    implementation("androidx.lifecycle:lifecycle-viewmodel:2.8.6")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.6")
+
 }
