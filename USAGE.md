@@ -1,16 +1,22 @@
 # Tetris Game Made With Jetpack Compose
 
+<img src="images/tetris.png" >
+
 Welcome to the Tetris Game! This app brings the classic block-stacking fun of Tetris to your Android device, built with Jetpack Compose for a smooth and engaging gameplay experience. Here’s some things to get started.
 
 ---
 
 ## Table of Contents
 
-- [Overview](#overview)
-- [Getting Started](#getting-started)
-- [How to Play](#how-to-play)
-- [Features](#features)
-- [FAQ](#faq)
+- [Tetris Game Made With Jetpack Compose](#tetris-game-made-with-jetpack-compose)
+  - [Table of Contents](#table-of-contents)
+    - [Overview](#overview)
+    - [Getting Started](#getting-started)
+    - [How to Play](#how-to-play)
+      - [Controls:](#controls)
+      - [Scoring:](#scoring)
+    - [Features](#features)
+    - [FAQ](#faq)
 
 ---
 
