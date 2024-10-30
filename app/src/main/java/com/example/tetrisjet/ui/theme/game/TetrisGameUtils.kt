@@ -3,7 +3,6 @@ package com.example.tetrisjet.ui.theme.game
 import android.graphics.Path.Direction
 import android.view.MotionEvent
 import androidx.compose.ui.graphics.Color
-import androidx.compose.foundation.gestures.awaitEachGesture
 
 fun calculateScore(linesDestroyed: Int) = when (linesDestroyed) {
     1 -> 100

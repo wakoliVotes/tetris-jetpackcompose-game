@@ -1,6 +1,5 @@
 package com.example.tetrisjet.ui.theme.game
 
-import android.content.Intent
 import android.graphics.Path.Direction
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.Color
@@ -14,7 +13,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class GameViewModel : ViewModel() {
-    val state = mutableStateOf(State.initial(12 to 24))
+    private val state = mutableStateOf(State.initial(12 to 24))
     private val intents = Channel<Intent>(Channel.UNLIMITED)
 
     init {
