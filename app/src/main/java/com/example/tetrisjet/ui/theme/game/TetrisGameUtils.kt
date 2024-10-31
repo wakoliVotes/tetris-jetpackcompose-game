@@ -1,8 +1,12 @@
 package com.example.tetrisjet.ui.theme.game
 
-import android.graphics.Path.Direction
+import com.example.tetrisjet.ui.theme.game.Direction
 import android.view.MotionEvent
 import androidx.compose.ui.graphics.Color
+
+enum class Direction {
+    LEFT, RIGHT, DOWN;
+}
 
 fun calculateScore(linesDestroyed: Int) = when (linesDestroyed) {
     1 -> 100
@@ -53,7 +57,7 @@ fun TetrisGameBlock.createProjection(blocks: Board): TetrisGameBlock {
 
 fun <Board> Board.modifyBlocks(block: TetrisGameBlock): Pair<Board, Int> {
     val size = multiSize
-    var newBoard = this.toMutableList()
+    var newBoard = this
     var destroyedRows = 0
     block.coordinates.forEach {
         newBoard = newBoard.update(it.first, it.second, block.color)
@@ -75,10 +79,10 @@ fun TetrisGameBlock.isValid(blocks: Board): Boolean {
 }
 
 fun Direction.toOffset() = when (this) {
-//    Direction.LEFT -> -1 to 0
-//    Direction.UP -> 0  to -1
-//    Direction.RIGHT -> 1 to 0
-//    Direction.DOWN -> 0 to 1
+    Direction.LEFT -> -1 to 0
+    Direction.UP -> 0  to -1
+    Direction.RIGHT -> 1 to 0
+    Direction.DOWN -> 0 to 1
 }
 
 fun SwipeEvent(event: MotionEvent?) {

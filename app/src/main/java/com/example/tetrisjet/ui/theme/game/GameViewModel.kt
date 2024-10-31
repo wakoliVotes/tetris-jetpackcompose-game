@@ -1,6 +1,5 @@
 package com.example.tetrisjet.ui.theme.game
 
-import android.graphics.Path.Direction
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
@@ -11,6 +10,7 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.consumeAsFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import com.example.tetrisjet.ui.theme.game.Direction
 
 class GameViewModel : ViewModel() {
     private val state = mutableStateOf(State.initial(12 to 24))
@@ -23,7 +23,7 @@ class GameViewModel : ViewModel() {
     }
 
     fun consume(intent: Intent) {
-        intents.trySend(intent).isSuccess
+        intents.trySend(intent)
     }
 
     private suspend fun handleIntents() {
