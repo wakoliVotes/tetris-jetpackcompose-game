@@ -54,7 +54,7 @@ fun TetrisGameBlock.createProjection(blocks: Board): TetrisGameBlock {
     return projection
 }
 
-
+//FIXME - Correct call and function errors - 31/10/2024
 fun Board.modifyBlocks(block: TetrisGameBlock): Pair<Board, Int> {
     val size = multiSize
     var newBoard = this
