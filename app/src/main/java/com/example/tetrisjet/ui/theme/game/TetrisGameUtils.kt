@@ -5,7 +5,7 @@ import android.view.MotionEvent
 import androidx.compose.ui.graphics.Color
 
 enum class Direction {
-    LEFT, RIGHT, DOWN;
+    LEFT, RIGHT, DOWN, UP;
 }
 
 fun calculateScore(linesDestroyed: Int) = when (linesDestroyed) {
@@ -37,14 +37,14 @@ operator fun Pair<Int, Int>.div(pair: Pair<Int, Int>): Pair<Int, Int> =
 operator fun Pair<Int, Int>.times(pair: Pair<Int, Int>): Pair<Int, Int> =
     Pair(first / pair.first, second * pair.second)
 
-fun <T> MutableList<List<T>>.updates(i: Int, j: Int, item: T): MutableList<List<T>> = apply {
+fun <T> MutableList<List<T>>.update(i: Int, j: Int, item: T): MutableList<List<T>> = apply {
     this[j] = this[j].toMutableList().apply {
         this[i] = item
     }
 }
 
 
-val <T> List<List<T>>.multiSize get() = (firstOrNull()?.size ?: 0) to size
+val <T> List<List<T>>.multiSize: Pair<Int, Int> get() = (firstOrNull()?.size ?: 0) to size
 
 fun TetrisGameBlock.createProjection(blocks: Board): TetrisGameBlock {
     var projection = this
@@ -55,16 +55,16 @@ fun TetrisGameBlock.createProjection(blocks: Board): TetrisGameBlock {
 }
 
 
-fun <Board> Board.modifyBlocks(block: TetrisGameBlock): Pair<Board, Int> {
+fun Board.modifyBlocks(block: TetrisGameBlock): Pair<Board, Int> {
     val size = multiSize
     var newBoard = this
     var destroyedRows = 0
     block.coordinates.forEach {
         newBoard = newBoard.update(it.first, it.second, block.color)
     }
-    if (newBoard.removeAll { row -> row.all { it != Color.Unspecified}}) {
+    if (newBoard.all { row -> row.all { it != Color.Unspecified}}) {
         destroyedRows = size.second - newBoard.size
-        newBoard.addAll(0, (0 until destroyedRows).map { (0 until size.first).map { Color.Unspecified } })
+        newBoard.addAll (0, (0 until destroyedRows).map { (0 until size.first).map { Color.Unspecified } })
     }
     return newBoard to destroyedRows
 }
@@ -85,7 +85,7 @@ fun Direction.toOffset() = when (this) {
     Direction.DOWN -> 0 to 1
 }
 
-fun SwipeEvent(event: MotionEvent?) {
+fun SwipeEvent(event: MotionEvent?): Boolean {
     when (event?.action) {
         MotionEvent.ACTION_UP -> {}
         MotionEvent.ACTION_DOWN -> {}
