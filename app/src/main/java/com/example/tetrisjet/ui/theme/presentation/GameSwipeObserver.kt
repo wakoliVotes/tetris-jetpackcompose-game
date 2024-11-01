@@ -47,8 +47,20 @@ fun onStop(velocity: Offset) {
         return degrees
     }
 
-
+    fun Modifier.detectSwipeGestures(
+    minTouchSlop: Float,
+    minSwipeVelocity: Float,
+    onSwipe: (direction: Direction) -> Unit
+): Modifier = pointerInput(Unit) {
+    val swipeObserver = TetrisSwipeObserver(minTouchSlop, minSwipeVelocity, onSwipe)
     
+    detectDragGestures(
+        onDragStart = { offset -> swipeObserver.onStart(offset) },
+        onDrag = { _, dragAmount -> swipeObserver.onDrag(dragAmount) },
+        onDragEnd = { /* Provide velocity if needed, here assuming Offset.Zero */ swipeObserver.onStop(Offset.Zero) },
+        onDragCancel = { /* Handle drag cancellation if needed */ }
+    )
+
 
 }
 
