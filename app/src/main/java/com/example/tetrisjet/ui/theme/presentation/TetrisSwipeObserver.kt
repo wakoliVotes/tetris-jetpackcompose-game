@@ -12,7 +12,7 @@ class TetrisSwipeObserver(
     private val minTouchSlop: Float,
     private val minSwipeVelocity: Float,
     private val onSwipeListener: (direction: Direction) -> Unit,
-) : DragObserver {
+) : DragScope {
     private var totalDragDistance: Offset = Offset.Zero
 
     override fun dragBy(pixels: Float) {
