@@ -37,7 +37,7 @@ operator fun Pair<Int, Int>.div(pair: Pair<Int, Int>): Pair<Int, Int> =
 operator fun Pair<Int, Int>.times(pair: Pair<Int, Int>): Pair<Int, Int> =
     Pair(first / pair.first, second * pair.second)
 
-fun <T> MutableList<List<T>>.update(i: Int, j: Int, item: T): MutableList<List<T>> = apply {
+fun <T> MutableList<MutableList<T>>.update(i: Int, j: Int, item: T): MutableList<MutableList<T>> = apply {
     this[j] = this[j].toMutableList().apply {
         this[i] = item
     }
@@ -57,7 +57,7 @@ fun TetrisGameBlock.createProjection(blocks: Board): TetrisGameBlock {
 //FIXME - Correct call and function errors - 31/10/2024
 fun Board.modifyBlocks(block: TetrisGameBlock): Pair<Board, Int> {
     val size = multiSize
-    var newBoard = this
+    var newBoard = this.map { it.toMutableList() }.toMutableList()  // Ensure all nested lists are mutable
     var destroyedRows = 0
     block.coordinates.forEach {
         newBoard = newBoard.update(it.first, it.second, block.color)
@@ -67,7 +67,7 @@ fun Board.modifyBlocks(block: TetrisGameBlock): Pair<Board, Int> {
         val emptyRows = (0 until destroyedRows).map {
             MutableList(size.first) { Color.Unspecified}
         }
-        newBoard.addAll (0, (0 until destroyedRows).map { (0 until size.first).map { Color.Unspecified } })
+        newBoard.addAll(0, emptyRows)  // Add new rows to the top
     }
     return newBoard to destroyedRows
 }
