@@ -1,7 +1,5 @@
 package com.example.tetrisjet.ui.theme.game
 
-import com.example.tetrisjet.ui.theme.game.Direction
-import android.view.MotionEvent
 import androidx.compose.ui.graphics.Color
 
 enum class Direction {
@@ -86,14 +84,4 @@ fun Direction.toOffset() = when (this) {
     Direction.UP -> 0  to -1
     Direction.RIGHT -> 1 to 0
     Direction.DOWN -> 0 to 1
-}
-
-fun SwipeEvent(event: MotionEvent?): Boolean {
-    when (event?.action) {
-        MotionEvent.ACTION_UP -> {}
-        MotionEvent.ACTION_DOWN -> {}
-        MotionEvent.ACTION_MOVE -> {}
-        else -> return false
-    }
-    true
 }
