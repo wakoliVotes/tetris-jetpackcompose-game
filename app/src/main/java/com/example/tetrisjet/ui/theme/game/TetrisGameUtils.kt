@@ -64,6 +64,9 @@ fun Board.modifyBlocks(block: TetrisGameBlock): Pair<Board, Int> {
     }
     if (newBoard.all { row -> row.all { it != Color.Unspecified}}) {
         destroyedRows = size.second - newBoard.size
+        val emptyRows = (0 until destroyedRows).map {
+            MutableList(size.first) { Color.Unspecified}
+        }
         newBoard.addAll (0, (0 until destroyedRows).map { (0 until size.first).map { Color.Unspecified } })
     }
     return newBoard to destroyedRows
