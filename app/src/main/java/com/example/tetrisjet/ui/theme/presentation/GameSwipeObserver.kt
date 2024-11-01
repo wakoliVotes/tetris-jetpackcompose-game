@@ -15,4 +15,13 @@ class GameSwipeObserver(
     }
 //    Add onDrag and onStop functions - 01/11/2024
 
+fun onDrag(dragDistance: Offset) : Offset {
+        totalDragDistance += dragDistance
+        return Offset.Zero
+}
+
+fun onStop() {
+
+}
+
 }
