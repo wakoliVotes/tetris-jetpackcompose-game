@@ -65,3 +65,11 @@ fun onStop(velocity: Offset) {
 }
 
 }
+
+// TEST
+
+Box() {
+    direction -> 
+    // Handle swipe direction
+    println("Swipe in direction: $direction" )
+}
