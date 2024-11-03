@@ -2,6 +2,7 @@ package com.example.tetrisjet.ui.theme.presentation
 
 import android.graphics.Path
 import androidx.compose.ui.geometry.Offset
+import java.lang.reflect.Modifier
 
 class GameSwipeObserver(
     private val minTouchSlop: Float,
@@ -51,7 +52,7 @@ fun onStop(velocity: Offset) {
     minTouchSlop: Float,
     minSwipeVelocity: Float,
     onSwipe: (direction: Direction) -> Unit
-): Modifier = pointerInput(Unit) {
+): Modifier = pointerInput (Unit) {
     val swipeObserver = TetrisSwipeObserver(minTouchSlop, minSwipeVelocity, onSwipe)
     
     detectDragGestures(
