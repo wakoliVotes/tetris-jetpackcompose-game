@@ -1,8 +1,13 @@
 package com.example.tetrisjet.ui.theme.presentation
 
 import android.graphics.Path
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.ui.geometry.Offset
 import java.lang.reflect.Modifier
+import androidx.compose.ui.input.pointer.pointerInput
+import com.example.tetrisjet.ui.theme.game.Direction
+import kotlin.math.sqrt
 
 class GameSwipeObserver(
     private val minTouchSlop: Float,
@@ -52,9 +57,9 @@ fun onStop(velocity: Offset) {
     minTouchSlop: Float,
     minSwipeVelocity: Float,
     onSwipe: (direction: Direction) -> Unit
-): Modifier = pointerInput (Unit) {
+): Modifier =  pointerInput (Unit) {
     val swipeObserver = TetrisSwipeObserver(minTouchSlop, minSwipeVelocity, onSwipe)
-    
+
     detectDragGestures(
         onDragStart = { offset -> swipeObserver.onStart(offset) },
         onDrag = { _, dragAmount -> swipeObserver.onDrag(dragAmount) },
@@ -64,13 +69,14 @@ fun onStop(velocity: Offset) {
 
 
 }
-
-}
-
-// TEST
-
-Box() {
-    direction -> 
-    // Handle swipe direction
-    println("Swipe in direction: $direction" )
+    
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .detectSwipeGestures(
+                minTouchSlop = 10f
+    ) {
+                direction ->
+                println("Swipe in direction: $direction")
+            }
 }
