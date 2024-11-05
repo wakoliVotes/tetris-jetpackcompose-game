@@ -1,12 +1,11 @@
 package com.example.tetrisjet.ui.theme.presentation
 
 import android.graphics.Path
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.ui.geometry.Offset
 import java.lang.reflect.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
 import com.example.tetrisjet.ui.theme.game.Direction
+import kotlin.math.atan2
 import kotlin.math.sqrt
 
 class GameSwipeObserver(
@@ -45,6 +44,8 @@ class GameSwipeObserver(
             }
         )
 
+
+
         private fun dist(x: Float, y: Float): Float = sqrt(x * x + y * y)
 
         private fun atan2(x: Float, y: Float): Float {
@@ -73,14 +74,28 @@ class GameSwipeObserver(
 
         }
     }
-    Box(
-    modifier = Modifier
-    .fillMaxSize()
-    .detectSwipeGestures(
-    minTouchSlop = 10f
-    ) {
-        direction ->
-        println("Swipe in direction: $direction")
+
+    private fun onSwipeListener(direction: Direction) {
+        when(direction) {
+            Direction.LEFT -> {
+                // Move the Tetris piece to the left
+                movePieceLeft()
+            }
+            Direction.RIGHT -> {
+                // Move the Tetris piece to the right
+                movePieceRight()
+            }
+            Direction.DOWN -> {
+                // Move the Tetris piece down
+                movePieceDown()
+            }
+        }
+
+
+    }
+
+    private fun dist(x: Float, y: Float): Float {
+        return sqrt(x * x * y * y)
     }
 }
 
