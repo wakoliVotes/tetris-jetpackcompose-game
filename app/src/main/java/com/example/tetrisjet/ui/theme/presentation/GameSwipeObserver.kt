@@ -90,13 +90,9 @@ class GameSwipeObserver(
                 movePieceDown()
             }
         }
-
-
     }
 
     private fun dist(x: Float, y: Float): Float {
         return sqrt(x * x * y * y)
     }
 }
-
-
