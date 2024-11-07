@@ -1,12 +1,9 @@
 package com.example.tetrisjet.ui.theme.presentation
 
 import android.graphics.Path.Direction
+import androidx.compose.foundation.gestures.DragScope
 import androidx.compose.ui.geometry.Offset
 import kotlin.math.sqrt
-import androidx.compose.foundation.gestures.DragScope
-import androidx.compose.foundation.gestures.awaitEachGesture
-import androidx.compose.foundation.gestures.awaitFirstDown
-import androidx.compose.foundation.gestures.detectTapGestures
 
 class TetrisSwipeObserver(
     private val minTouchSlop: Float,
