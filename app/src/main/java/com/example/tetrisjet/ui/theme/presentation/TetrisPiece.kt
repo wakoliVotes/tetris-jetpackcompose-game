@@ -7,11 +7,11 @@ data class TetrisPiece(var x: Int, var y: Int)
 var currentPiece = TetrisPiece(5, 0)
 
 // Define game board dimensions
-val boardWidth = 10
-val boardHeight = 20
+const val boardWidth = 10
+const val boardHeight = 20
 
 // Moves the Tetris piece left if within bounds
-private fun movePieceLeft() {
+fun movePieceLeft() {
     if (currentPiece.x > 0) {
         currentPiece = currentPiece.copy(x = currentPiece.x - 1)
         println("Moved Piece to position: ${currentPiece.x}, ${currentPiece.y}")
@@ -21,7 +21,7 @@ private fun movePieceLeft() {
 }
 
 // Moves the Tetris piece right if within bounds
-private fun movePieceRight() {
+fun movePieceRight() {
     if (currentPiece.x < boardWidth - 1) {
         currentPiece = currentPiece.copy(x = currentPiece.x + 1)
         println("Moved Piece to position: ${currentPiece.x}, ${currentPiece.y}")
@@ -29,3 +29,11 @@ private fun movePieceRight() {
     }
 }
 
+// Moves the Tetris piece down if within bounds
+fun movePieceDown() {
+    if (currentPiece.y < boardHeight - 1) {
+        currentPiece = currentPiece.copy(y = currentPiece.y + 1)
+        println("Moved Piece to position: ${currentPiece.x}, ${currentPiece.y}")
+        // Trigger a recomposition if needed
+    }
+}

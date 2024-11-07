@@ -7,6 +7,7 @@ import androidx.compose.ui.input.pointer.pointerInput
 import com.example.tetrisjet.ui.theme.game.Direction
 import kotlin.math.atan2
 import kotlin.math.sqrt
+import com.example.tetrisjet.ui.theme.presentation.TetrisPiece.*
 
 class GameSwipeObserver(
     private val minTouchSlop: Float,
